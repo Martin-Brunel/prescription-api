@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PrescriptionModule } from './prescription/prescription.module';
 import { Prescription } from './prescription/entities/precription.entity';
+import { CotationModule } from './cotation/cotation.module';
+import { Cotation } from './cotation/entities/cotation.entity';
 
 @Module({
   imports: [
@@ -17,12 +19,13 @@ import { Prescription } from './prescription/entities/precription.entity';
       username: 'mbrunel',
       password: 'Martin118',
       database: 'prescription',
-      entities: [User, Prescription],
+      entities: [User, Prescription, Cotation],
       synchronize: true,
     }),
     AuthModule,
     UserModule,
     PrescriptionModule,
+    CotationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

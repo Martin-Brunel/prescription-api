@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntity } from 'src/baseEntity/baseEntity.entity';
+import { Cotation } from 'src/cotation/entities/cotation.entity';
 import { Role } from 'src/enums/roles.enum';
 import { Prescription } from 'src/prescription/entities/precription.entity';
 import {
@@ -38,4 +39,7 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Prescription, (presciption) => presciption.user)
   prescriptions: Prescription[];
+
+  @OneToMany(() => Cotation, (cotation) => cotation.createdBy)
+  cotations: Cotation[];
 }
