@@ -12,10 +12,10 @@ import { Prescription } from './prescription/entities/precription.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 33210,
-      username: 'root',
-      password: 'pIthsDlZE5z1uBbJ',
+      host: '51.178.48.126',
+      port: 3306,
+      username: 'mbrunel',
+      password: 'Martin118',
       database: 'prescription',
       entities: [User, Prescription],
       synchronize: true,
