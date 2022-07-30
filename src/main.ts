@@ -5,6 +5,11 @@ import {
   DocumentBuilder,
   SwaggerCustomOptions,
 } from '@nestjs/swagger';
+import * as dotenv from 'dotenv';
+
+dotenv.config({ path: '.env.local' });
+
+console.log(process.env);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });

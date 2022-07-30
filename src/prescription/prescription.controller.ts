@@ -1,4 +1,11 @@
-import { Body, Controller, Injectable, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Injectable,
+  Post,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
@@ -17,14 +24,15 @@ export class PrescriptionController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   @ApiCreatedResponse({
     status: 201,
     type: Prescription,
   })
   async create(
     @Body() createPrescriptionDto: CreatePrescriptionDto,
+    @Request() req,
   ): Promise<Prescription> {
-    return this.prescriptionService.create(createPrescriptionDto);
+    console.log(req.user);
+    return this.prescriptionService.create(createPrescriptionDto, req.user);
   }
 }

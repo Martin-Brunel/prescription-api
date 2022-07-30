@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntity } from 'src/baseEntity/baseEntity.entity';
 import { Role } from 'src/enums/roles.enum';
+import { Prescription } from 'src/prescription/entities/precription.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,6 +10,7 @@ import {
   DeleteDateColumn,
   AfterLoad,
   BeforeInsert,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -33,4 +35,7 @@ export class User extends BaseEntity {
   stringifyRoles() {
     this.roles = JSON.stringify(this.roles);
   }
+
+  @OneToMany(() => Prescription, (presciption) => presciption.user)
+  prescriptions: Prescription[];
 }
