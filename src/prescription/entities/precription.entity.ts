@@ -14,6 +14,6 @@ import {
 @Entity()
 export class Prescription extends BaseEntity {
   @ApiProperty()
-  @Column({ type: 'varchar' })
+  @Column({ type: 'text' })
   label: string;
 }
