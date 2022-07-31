@@ -21,4 +21,16 @@ export class PrescriptionService {
     newPrescription.user = user;
     return await this.prescriptionRepository.save(newPrescription);
   };
+
+  public getToCotation = async (user: User): Promise<Prescription> => {
+    const req = await this.prescriptionRepository
+      .createQueryBuilder('prescription')
+      .leftJoinAndSelect('prescription.cotations', 'cotation')
+      .where('prescription.is_deleted = 0')
+      .andWhere('cotation is null')
+      .getOne();
+
+    console.log(req);
+    return req;
+  };
 }

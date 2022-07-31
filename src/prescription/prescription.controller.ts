@@ -5,6 +5,7 @@ import {
   Post,
   UseGuards,
   Request,
+  Get,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -32,7 +33,16 @@ export class PrescriptionController {
     @Body() createPrescriptionDto: CreatePrescriptionDto,
     @Request() req,
   ): Promise<Prescription> {
-    console.log(req.user);
     return this.prescriptionService.create(createPrescriptionDto, req.user);
+  }
+
+  @Get('/toCotation')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiCreatedResponse({
+    status: 200,
+    type: Prescription,
+  })
+  async getToCotation(@Request() req): Promise<Prescription> {
+    return this.prescriptionService.getToCotation(req.user);
   }
 }
