@@ -40,6 +40,7 @@ export class User extends BaseEntity {
   @OneToMany(() => Prescription, (presciption) => presciption.user)
   prescriptions: Prescription[];
 
+  @ApiProperty({ type: () => Cotation })
   @OneToMany(() => Cotation, (cotation) => cotation.createdBy)
   cotations: Cotation[];
 }

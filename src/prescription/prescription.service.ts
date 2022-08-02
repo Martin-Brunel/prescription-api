@@ -30,7 +30,13 @@ export class PrescriptionService {
       .andWhere('cotation is null')
       .getOne();
 
-    console.log(req);
     return req;
+  };
+
+  public findOneById = async (id: number): Promise<Prescription> => {
+    return await this.prescriptionRepository.findOneBy({
+      id,
+      is_deleted: false,
+    });
   };
 }
