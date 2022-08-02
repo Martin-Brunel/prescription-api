@@ -27,7 +27,7 @@ export class PrescriptionService {
       .createQueryBuilder('prescription')
       .leftJoinAndSelect('prescription.cotations', 'cotation')
       .where('prescription.is_deleted = 0')
-      .andWhere('cotation is null')
+      .andWhere('cotation.id is null')
       .getOne();
 
     return req;
