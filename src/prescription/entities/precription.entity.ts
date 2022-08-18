@@ -19,6 +19,10 @@ export class Prescription extends BaseEntity {
   @Column({ type: 'text' })
   label: string;
 
+  @ApiProperty()
+  @Column({ type: 'text' })
+  sanitize: string;
+
   @ManyToOne(() => User, (user) => user.prescriptions)
   user: User;
 

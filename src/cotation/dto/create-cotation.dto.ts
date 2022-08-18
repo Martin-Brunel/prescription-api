@@ -22,6 +22,11 @@ export class CreateCotationDto {
   @ApiProperty()
   isDomicile: boolean;
 
+  @IsNotEmpty()
+  @IsBoolean()
+  @ApiProperty()
+  isBalneo: boolean;
+
   @ApiProperty()
   nbAppointment?: number;
 

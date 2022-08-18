@@ -18,6 +18,10 @@ export class Cotation extends BaseEntity {
   isDomicile: boolean;
 
   @ApiProperty()
+  @Column({ type: 'boolean', nullable: false, default: false })
+  isBalneo: boolean;
+
+  @ApiProperty()
   @Column({ type: 'text', nullable: true })
   explain: string;
 

@@ -15,6 +15,13 @@ import { KeyLetter } from './key-letter/entities/key-letter.entity';
 import { Ngap } from './ngap/entities/ngap.entity';
 import { ReferencialModule } from './referencial/referencial.module';
 import { Referential } from './referencial/entities/referential.entity';
+import { LexiqueModule } from './lexique/lexique.module';
+import { Lexique } from './lexique/entities/lexique.entity';
+import { CommandModule } from 'nestjs-command';
+import { PrescriptionCommand } from './commands/prescriptions';
+import { PrescriptionService } from './prescription/prescription.service';
+import { DictionaryModule } from './dictionary/dictionary.module';
+import { Dictionary } from './dictionary/entities/dictionary.entity';
 
 @Module({
   imports: [
@@ -25,7 +32,16 @@ import { Referential } from './referencial/entities/referential.entity';
       username: 'mbrunel',
       password: 'Martin118',
       database: 'prescription',
-      entities: [User, Prescription, Cotation, KeyLetter, Ngap, Referential],
+      entities: [
+        User,
+        Prescription,
+        Cotation,
+        KeyLetter,
+        Ngap,
+        Referential,
+        Lexique,
+        Dictionary,
+      ],
       synchronize: true,
     }),
     AuthModule,
@@ -35,8 +51,12 @@ import { Referential } from './referencial/entities/referential.entity';
     NgapModule,
     KeyLetterModule,
     ReferencialModule,
+    LexiqueModule,
+    CommandModule,
+    TypeOrmModule.forFeature([Prescription]),
+    DictionaryModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [PrescriptionCommand, PrescriptionService, AppService],
 })
 export class AppModule {}

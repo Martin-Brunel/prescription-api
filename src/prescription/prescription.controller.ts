@@ -45,4 +45,15 @@ export class PrescriptionController {
   async getToCotation(@Request() req): Promise<Prescription> {
     return this.prescriptionService.getToCotation(req.user);
   }
+
+  @Post('/sanitize')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.Admin)
+  @ApiCreatedResponse({
+    status: 200,
+    type: [Prescription],
+  })
+  async sanitize(): Promise<Prescription[]> {
+    return this.prescriptionService.sanitizeAll();
+  }
 }

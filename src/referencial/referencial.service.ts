@@ -16,4 +16,12 @@ export class ReferencialService {
       is_deleted: false,
     });
   };
+
+  public findAll = async (): Promise<Referential[]> => {
+    return await this.referentialRepository.find({
+      where: {
+        is_deleted: false,
+      },
+    });
+  };
 }
